@@ -3,7 +3,7 @@ package build
 import (
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-	"github.com/paydex-go/xdr"
+	"github.com/paydex-core/paydex-go/xdr"
 )
 
 var _ = Describe("BumpSequenceBuilder Mutators", func() {

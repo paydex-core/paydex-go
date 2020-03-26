@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/paydex-go/amount"
-	"github.com/paydex-go/xdr"
+	"github.com/paydex-core/paydex-go/amount"
+	"github.com/paydex-core/paydex-go/xdr"
 )
 
 var Tests = []struct {

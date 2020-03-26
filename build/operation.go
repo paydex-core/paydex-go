@@ -1,7 +1,7 @@
 package build
 
 import (
-	"github.com/paydex-go/xdr"
+	"github.com/paydex-core/paydex-go/xdr"
 )
 
 // OperationMutator is a interface that wraps the MutateOperation operation.

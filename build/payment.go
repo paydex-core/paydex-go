@@ -1,9 +1,9 @@
 package build
 
 import (
-	"github.com/paydex-go/amount"
-	"github.com/paydex-go/support/errors"
-	"github.com/paydex-go/xdr"
+	"github.com/paydex-core/paydex-go/amount"
+	"github.com/paydex-core/paydex-go/support/errors"
+	"github.com/paydex-core/paydex-go/xdr"
 )
 
 // Payment groups the creation of a new PaymentBuilder with a call to Mutate.

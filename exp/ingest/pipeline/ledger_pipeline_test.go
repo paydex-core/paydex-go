@@ -5,11 +5,11 @@ import (
 	stdio "io"
 	"testing"
 
-	"github.com/paydex-go/exp/ingest/io"
-	"github.com/paydex-go/exp/ingest/pipeline"
-	"github.com/paydex-go/exp/ingest/processors"
-	supportPipeline "github.com/paydex-go/exp/support/pipeline"
-	"github.com/paydex-go/xdr"
+	"github.com/paydex-core/paydex-go/exp/ingest/io"
+	"github.com/paydex-core/paydex-go/exp/ingest/pipeline"
+	"github.com/paydex-core/paydex-go/exp/ingest/processors"
+	supportPipeline "github.com/paydex-core/paydex-go/exp/support/pipeline"
+	"github.com/paydex-core/paydex-go/xdr"
 	"github.com/stretchr/testify/assert"
 )
 

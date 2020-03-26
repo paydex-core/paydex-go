@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/paydex-go/keypair"
+	"github.com/paydex-core/paydex-go/keypair"
 	"github.com/stretchr/testify/assert"
 )
 

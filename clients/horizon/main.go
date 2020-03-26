@@ -3,7 +3,7 @@
 //
 // Deprecated: clients/horizon package with all its exported methods and variables will no longer be
 // maintained. It will be removed in future versions of the SDK.
-// Use clients/horizonclient (https://godoc.org/github.com/paydex-go/go/clients/horizonclient) instead.
+// Use clients/horizonclient (https://godoc.org/github.com/paydex-core/paydex-go/go/clients/horizonclient) instead.
 package horizon
 
 import (
