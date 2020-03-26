@@ -1,0 +1,112 @@
+package horizon
+
+import (
+	"encoding/json"
+	"strings"
+	"testing"
+
+	"github.com/paydex-core/paydex-go/protocols/horizon"
+	"github.com/paydex-core/paydex-go/services/horizon/internal/test"
+)
+
+func TestRootAction(t *testing.T) {
+	ht := StartHTTPTest(t, "base")
+	defer ht.Finish()
+
+	server := test.NewStaticMockServer(`{
+			"info": {
+				"network": "test",
+				"build": "test-core",
+				"ledger": {
+					"version": 3
+				},
+				"protocol_version": 4
+			}
+		}`)
+	defer server.Close()
+
+	ht.App.horizonVersion = "test-horizon"
+	ht.App.config.PaydexCoreURL = server.URL
+	ht.App.config.NetworkPassphrase = "test"
+	ht.App.UpdatePaydexCoreInfo()
+
+	w := ht.Get("/")
+
+	if ht.Assert.Equal(200, w.Code) {
+		var actual horizon.Root
+		err := json.Unmarshal(w.Body.Bytes(), &actual)
+		ht.Require.NoError(err)
+		ht.Assert.Equal("test-horizon", actual.HorizonVersion)
+		ht.Assert.Equal("test-core", actual.paydexCoreVersion)
+		ht.Assert.Equal(int32(4), actual.CoreSupportedProtocolVersion)
+		ht.Assert.Equal(int32(3), actual.CurrentProtocolVersion)
+	}
+}
+
+func TestRootActionWithIngestion(t *testing.T) {
+	ht := StartHTTPTest(t, "base")
+	defer ht.Finish()
+
+	server := test.NewStaticMockServer(`{
+			"info": {
+				"network": "test",
+				"build": "test-core",
+				"ledger": {
+					"version": 3
+				},
+				"protocol_version": 4
+			}
+		}`)
+	defer server.Close()
+
+	ht.App.horizonVersion = "test-horizon"
+	ht.App.config.PaydexCoreURL = server.URL
+	ht.App.config.NetworkPassphrase = "test"
+	ht.App.UpdatePaydexCoreInfo()
+	ht.App.config.EnableExperimentalIngestion = true
+
+	w := ht.Get("/")
+
+	if ht.Assert.Equal(200, w.Code) {
+		var actual horizon.Root
+		err := json.Unmarshal(w.Body.Bytes(), &actual)
+		ht.Require.NoError(err)
+		ht.Assert.Equal(
+			"http://localhost/accounts{?signer,asset,cursor,limit,order}",
+			actual.Links.Accounts.Href,
+		)
+		ht.Assert.Equal(
+			"http://localhost/offers{?selling_asset_type,selling_asset_issuer,selling_asset_code,buying_asset_type,buying_asset_issuer,buying_asset_code,seller,cursor,limit,order}",
+			actual.Links.Offers.Href,
+		)
+
+		params := []string{
+			"destination_account",
+			"destination_assets",
+			"source_asset_type",
+			"source_asset_issuer",
+			"source_asset_code",
+			"source_amount",
+		}
+
+		ht.Assert.Equal(
+			"http://localhost/paths/strict-send{?"+strings.Join(params, ",")+"}",
+			actual.Links.StrictSendPaths.Href,
+		)
+
+		params = []string{
+			"source_assets",
+			"source_account",
+			"destination_account",
+			"destination_asset_type",
+			"destination_asset_issuer",
+			"destination_asset_code",
+			"destination_amount",
+		}
+
+		ht.Assert.Equal(
+			"http://localhost/paths/strict-receive{?"+strings.Join(params, ",")+"}",
+			actual.Links.StrictReceivePaths.Href,
+		)
+	}
+}

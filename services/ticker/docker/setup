@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -e
+
+useradd --uid 10011001 --home-dir /home/paydex --no-log-init paydex \
+    && mkdir -p /home/paydex \
+    && chown -R paydex:paydex /home/paydex
+
+mkdir -p /opt/paydex/bin
+mkdir -p /opt/paydex/www
+chown -R paydex:paydex /opt/paydex/www
+mkdir -p /opt/paydex/postgresql/data
+
+export TICKER="ticker-v1.1.0"
+export TICKER_PATH="$TICKER-linux-amd64"
+wget -O ticker.tar.gz https://github.com/paydex-core/paydex-go/releases/download/$TICKER/$TICKER_PATH.tar.gz
+tar -xvzf ticker.tar.gz
+mv $TICKER_PATH/ticker /opt/paydex/bin/ticker
+chmod +x /opt/paydex/bin/ticker
