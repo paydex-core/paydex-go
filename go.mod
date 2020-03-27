@@ -8,7 +8,7 @@ require (
 	github.com/Masterminds/squirrel v1.2.0
 	github.com/ajg/form v1.5.1 // indirect
 	github.com/asaskevich/govalidator v0.0.0-20200108200545-475eaeb16496
-	github.com/aws/aws-sdk-go v1.29.32
+	github.com/aws/aws-sdk-go v1.29.33
 	github.com/certifi/gocertifi v0.0.0-20200211180108-c7c1fbc02894 // indirect
 	github.com/elazarl/go-bindata-assetfs v1.0.0
 	github.com/facebookarchive/inject v0.0.0-20180706035515-f23751cae28b
@@ -46,15 +46,13 @@ require (
 	github.com/rcrowley/go-metrics v0.0.0-20200313005456-10cdbea86bc0
 	github.com/rs/cors v1.7.0
 	github.com/rubenv/sql-migrate v0.0.0-20200212082348-64f95ea68aa3
-	github.com/sebest/xff v0.0.0-20160910043805-6c115e0ffa35
+	github.com/sebest/xff v0.0.0-20150611211316-7a36e3a787b5
 	github.com/segmentio/go-loggly v0.5.0
 	github.com/sergi/go-diff v1.1.0 // indirect
 	github.com/shurcooL/httpfs v0.0.0-20190707220628-8d4bc4ba7749
 	github.com/sirupsen/logrus v1.5.0
 	github.com/spf13/cobra v0.0.6
 	github.com/spf13/viper v1.6.2
-	github.com/stellar/go-xdr v0.0.0-20191118232123-3aa35463cbdb // indirect
-	github.com/stellar/throttled v2.2.4+incompatible // indirect
 	github.com/stretchr/testify v1.5.1
 	github.com/throttled/throttled v2.2.4+incompatible // indirect
 	github.com/tyler-smith/go-bip39 v1.0.2

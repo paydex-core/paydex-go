@@ -128,15 +128,15 @@ func (e ScpStatementType) String() string {
 }
 
 // MarshalBinary implements encoding.BinaryMarshaler.
-func (e ScpStatementType) MarshalBinary() ([]byte, error) {
+func (s ScpStatementType) MarshalBinary() ([]byte, error) {
 	b := new(bytes.Buffer)
-	_, err := Marshal(b, e)
+	_, err := Marshal(b, s)
 	return b.Bytes(), err
 }
 
 // UnmarshalBinary implements encoding.BinaryUnmarshaler.
-func (e *ScpStatementType) UnmarshalBinary(inp []byte) error {
-	_, err := Unmarshal(bytes.NewReader(inp), e)
+func (s *ScpStatementType) UnmarshalBinary(inp []byte) error {
+	_, err := Unmarshal(bytes.NewReader(inp), s)
 	return err
 }
 
@@ -2683,8 +2683,8 @@ var (
 //
 //   enum PaydexValueType
 //    {
-//        Paydex_VALUE_BASIC = 0,
-//        Paydex_VALUE_SIGNED = 1
+//        PAYDEX_VALUE_BASIC = 0,
+//        PAYDEX_VALUE_SIGNED = 1
 //    };
 //
 type PaydexValueType int32
@@ -2695,8 +2695,8 @@ const (
 )
 
 var paydexValueTypeMap = map[int32]string{
-	0: "PaydexValueTypePaydex  ValueBasic",
-	1: "PaydexValueTypePaydex  ValueSigned",
+	0: "PaydexValueTypePaydexValueBasic",
+	1: "PaydexValueTypePaydexValueSigned",
 }
 
 // ValidEnum validates a proposed value for this enum.  Implements
@@ -2887,14 +2887,14 @@ type PaydexValue struct {
 }
 
 // MarshalBinary implements encoding.BinaryMarshaler.
-func (s PaydexValueExt) MarshalBinary() ([]byte, error) {
+func (s PaydexValue) MarshalBinary() ([]byte, error) {
 	b := new(bytes.Buffer)
 	_, err := Marshal(b, s)
 	return b.Bytes(), err
 }
 
 // UnmarshalBinary implements encoding.BinaryUnmarshaler.
-func (s *PaydexValueExt) UnmarshalBinary(inp []byte) error {
+func (s *PaydexValue) UnmarshalBinary(inp []byte) error {
 	_, err := Unmarshal(bytes.NewReader(inp), s)
 	return err
 }
@@ -5970,15 +5970,15 @@ func (u PaydexMessage) GetGetScpLedgerSeq() (result Uint32, ok bool) {
 }
 
 // MarshalBinary implements encoding.BinaryMarshaler.
-func (u PaydexMessage) MarshalBinary() ([]byte, error) {
+func (s PaydexMessage) MarshalBinary() ([]byte, error) {
 	b := new(bytes.Buffer)
-	_, err := Marshal(b, u)
+	_, err := Marshal(b, s)
 	return b.Bytes(), err
 }
 
 // UnmarshalBinary implements encoding.BinaryUnmarshaler.
-func (u *PaydexMessage) UnmarshalBinary(inp []byte) error {
-	_, err := Unmarshal(bytes.NewReader(inp), u)
+func (s *PaydexMessage) UnmarshalBinary(inp []byte) error {
+	_, err := Unmarshal(bytes.NewReader(inp), s)
 	return err
 }
 
